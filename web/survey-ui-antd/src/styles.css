@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+.survey div.ant-card-head {
+    height: auto;
+    line-height: auto;
+}
+
+.survey .ant-card-head-title {
+    height: auto;
+    line-height: auto;
+    white-space:normal;
+    line-height: 20px;
+    margin-top: 15px;
+}
+
+.margin-10 {
+    margin: 10px;
+}

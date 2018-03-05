@@ -1,0 +1,27 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+  <div nz-form-item nz-row *ngFor="let choice of choices;let i = index">
+    <div nz-form-label nz-col [nzSpan]="4" *ngIf="i==0">
+      <label>题目选项</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="i==0?0:4">
+
+      <nz-input [nzSize]="'large'" [formControlName]="'content'+choice.id"> [nzId]="'content'+choice.id"></nz-input>
+      <nz-input-number [nzSize]="'large'" [formControlName]="'score'+choice.id"> [nzId]="'score'+choice.id"></nz-input-number>
+      <i class="anticon anticon-minus-circle-o dynamic-delete-button" (click)="removeField(choice,$event)"></i>
+
+    </div>
+  </div>
+  <div nz-form-item nz-row>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
+      <button nz-button [nzType]="'dashed'" [nzSize]="'large'" style="width:60%" (click)="addField($event)">
+        <i class="anticon anticon-plus"></i>
+        <span> Add field</span>
+      </button>
+    </div>
+  </div>
+  <div nz-form-item nz-row>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
+      <button nz-button [nzType]="'primary'" [nzSize]="'large'">Submit</button>
+    </div>
+  </div>
+</form>

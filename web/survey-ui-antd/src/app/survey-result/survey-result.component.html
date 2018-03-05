@@ -1,0 +1,27 @@
+<nz-card >
+    <ng-template #title>
+        得分:<span class="score">{{surveyRecord?.conclusion?.score}}</span>
+    </ng-template>
+  
+    <ng-template #body>
+        {{surveyRecord.conclusion?.content}}
+    </ng-template>
+  </nz-card>
+
+<nz-card *ngFor="let question of page.content;let i=index;" class="survey">
+    <ng-template #title>
+        {{(page.pageIndex -1)* page.pageSize + i + 1}}、{{question.content}}
+    </ng-template>
+  
+    <ng-template #body>
+      <p *ngFor="let choice of question.choices;let j=index;">
+        <button nz-button [nzType]="'default'" [class.right-choice-selected]="choice.select && choice.score != 0" [class.wrong-choice-selected]="choice.select && choice.score == 0" >
+          <span>{{letters[j]}}、{{choice.content}}</span>
+        </button>
+      </p>
+      <p class="margin-10 right-choice-selected">正确答案: {{getRightAnswer(question.choices)}}</p>
+    </ng-template>
+  </nz-card>
+  <nz-back-top #backTop>
+  </nz-back-top>
+  <nz-pagination class="margin-10" [nzPageIndex]="page.pageIndex" [nzPageSize]="page.pageSize" nzSimple [nzTotal]="page.pageTotal" (nzPageIndexClickChange)="changePage($event, backTop)"></nz-pagination>

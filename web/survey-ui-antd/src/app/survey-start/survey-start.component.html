@@ -1,0 +1,19 @@
+<nz-card *ngFor="let question of page.content;let i=index;" class="survey">
+  <ng-template #title>
+    {{(page.pageIndex -1)* page.pageSize + i + 1}}、{{question.content}}
+  </ng-template>
+
+  <ng-template #body>
+    <p *ngFor="let choice of question.choices;let j=index;">
+      <button nz-button [nzType]="'default'" [class.choice-selected]="choice.select" (click)="selectField(question, choice)">
+        <span>{{letters[j]}}、{{choice.content}}</span>
+      </button>
+    </p>
+  </ng-template>
+</nz-card>
+<nz-back-top #backTop>
+</nz-back-top>
+<nz-pagination class="margin-10" [nzPageIndex]="page.pageIndex" [nzPageSize]="page.pageSize" nzSimple [nzTotal]="page.pageTotal" (nzPageIndexClickChange)="changePage($event, backTop)"></nz-pagination>
+<nz-popconfirm [nzTitle]="'一台手机只能做一次题,确定要提交这个吗？'" (nzOnConfirm)="saveSurvey()" [nzPlacement]="'topLeft'">
+  <button nz-popconfirm nz-button [nzType]="'primary'" [nzSize]="'large'" class="margin-10">提交</button>
+</nz-popconfirm>
