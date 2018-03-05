@@ -1,0 +1,48 @@
+{
+  "name": "survey-node",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "detect-port": "^1.2.2",
+    "egg": "^2.0.0",
+    "egg-mongoose": "^2.1.1",
+    "egg-scripts": "^2.5.0",
+    "kcors": "^2.2.1",
+    "node-xlsx": "^0.11.2"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.0.0",
+    "egg-bin": "^4.3.5",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.13.0",
+    "eslint": "^4.11.0",
+    "eslint-config-egg": "^5.1.0",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start  --port=3390 --daemon --title=egg-server-survey-node",
+    "stop": "egg-scripts stop --title=egg-server-survey-node",
+    "dev": "egg-bin  --port=3390 dev",
+    "debug": "egg-bin  --port=3390 debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT"
+}

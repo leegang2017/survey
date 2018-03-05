@@ -1,0 +1,256 @@
+{
+  "_id": "5a363ff59e990844c1699daf",
+  "name": "学习十九大",
+  "category": "CAPABILITY_ASSESSMENT",
+  "code": "A4",
+  "questions": [
+    {
+      "id": 0,
+      "choices": [
+        {
+          "id": 0,
+          "content": "2017年10月18日",
+          "score": 1
+        },
+        {
+          "id": 1,
+          "content": "2017年10月24日",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "content": "2017年8月31日",
+          "score": 0
+        }
+      ],
+      "content": "中国共产党第十九次全国代表大会召开时间（  ）",
+      "category": "SINGLE"
+    },
+    {
+      "id": 1,
+      "choices": [
+        {
+          "id": 0,
+          "content": "新时期",
+          "score": 0
+        },
+        {
+          "id": 1,
+          "content": "新阶段",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "content": "新征程",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "content": "新时代",
+          "score": 1
+        }
+      ],
+      "content": "中国共产党第十九次全国代表大会，是在全面建成小康社会决胜阶段、中国特色社会主义进入_____的关键时期召开的一次十分重要的大会。",
+      "category": "SINGLE"
+    },
+    {
+      "id": 2,
+      "choices": [
+        {
+          "id": 0,
+          "content": "继续前进",
+          "score": 0
+        },
+        {
+          "id": 1,
+          "content": "牢记使命",
+          "score": 1
+        },
+        {
+          "id": 2,
+          "content": "方得始终",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "content": "砥砺前行",
+          "score": 0
+        }
+      ],
+      "content": "十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。",
+      "category": "SINGLE"
+    },
+    {
+      "id": 3,
+      "choices": [
+        {
+          "id": 0,
+          "content": "谋幸福，谋未来",
+          "score": 0
+        },
+        {
+          "id": 1,
+          "content": "谋生活，谋复兴",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "content": "谋幸福，谋复兴",
+          "score": 1
+        },
+        {
+          "id": 3,
+          "content": "谋生活，谋未来",
+          "score": 0
+        }
+      ],
+      "content": "中国共产党人的初心和使命，就是为中国人民____ ，为中华民族____。这个初心和使命是激励中国共产党人不断前进的根本动力。",
+      "category": "SINGLE"
+    },
+    {
+      "id": 4,
+      "choices": [
+        {
+          "id": 0,
+          "content": "五位一体　四个全面",
+          "score": 1
+        },
+        {
+          "id": 1,
+          "content": "四位一体　五个全面",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "content": "五个全面　四位一体",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "content": "四个全面　五位一体",
+          "score": 0
+        }
+      ],
+      "content": "五年来，我们统筹推进“____”总体布局、协调推进“____”战略布局，“十二五”规划胜利完成，“十三五”规划顺利实施，党和国家事业全面开创新局面。",
+      "category": "SINGLE"
+    },
+    {
+      "id": 5,
+      "choices": [
+        {
+          "id": 0,
+          "content": "六十",
+          "score": 0
+        },
+        {
+          "id": 1,
+          "content": "七十",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "content": "八十",
+          "score": 1
+        },
+        {
+          "id": 3,
+          "content": "九十",
+          "score": 0
+        }
+      ],
+      "content": "过去五年，经济保持中高速增长，在世界主要国家中名列前茅，国内生产总值从五十四万亿元增长到____万亿元，稳居世界第二，对世界经济增长贡献率超过百分之三十。",
+      "category": "SINGLE"
+    },
+    {
+      "id": 6,
+      "choices": [
+        {
+          "id": 0,
+          "content": "六千多万",
+          "score": 1
+        },
+        {
+          "id": 1,
+          "content": "七千多万",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "content": "八千多万",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "content": "九千多万",
+          "score": 0
+        }
+      ],
+      "content": "脱贫攻坚战取得决定性进展，____贫困人口稳定脱贫，贫困发生率从百分之十点二下降到百分之四以下。",
+      "category": "SINGLE"
+    },
+    {
+      "id": 7,
+      "choices": [
+        {
+          "id": 0,
+          "content": "北京　南京",
+          "score": 0
+        },
+        {
+          "id": 1,
+          "content": "杭州　厦门",
+          "score": 1
+        },
+        {
+          "id": 2,
+          "content": "南京　北京",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "content": "厦门　杭州",
+          "score": 0
+        }
+      ],
+      "content": "实施共建“一带一路”倡议，发起创办亚洲基础设施投资银行，设立丝路基金，举办首届“一带一路”国际合作高峰论坛、亚太经合组织领导人非正式会议、二十国集团领导人____峰会、金砖国家领导人____会晤、亚信峰会。",
+      "category": "SINGLE"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": 0,
+      "content": "成绩很好",
+      "region": [
+        90,
+        100
+      ]
+    },
+    {
+      "id": 1,
+      "content": "成绩良",
+      "region": [
+        80,
+        90
+      ]
+    },
+    {
+      "id": 2,
+      "content": "成绩中等",
+      "region": [
+        60,
+        80
+      ]
+    },
+    {
+      "id": 3,
+      "content": "成绩不及格",
+      "region": [
+        0,
+        60
+      ]
+    }
+  ],
+  "status": "NEW",
+  "created": 1513504757058,
+  "updated": 1513516860250
+}

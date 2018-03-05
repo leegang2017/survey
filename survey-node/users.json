@@ -1,0 +1,17 @@
+[
+  {
+    "name": "陈跃熙",
+    "isMale": true,
+    "identityNumber": "51021219610312035X"
+  },
+  {
+    "name": "李佳",
+    "isMale": false,
+    "identityNumber": "510107197411012623"
+  },
+  {
+    "name": "唐建",
+    "isMale": true,
+    "identityNumber": "510102197205075736"
+  }
+]
