@@ -1,0 +1,25 @@
+
+.normal {
+}
+.choiceSelected {
+    color: #108ee9 !important;
+}
+.choice{
+    display: block;
+    outline: 0 none;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 13px;
+    height: auto;
+    line-height: 20px;
+    overflow: hidden;
+    word-break: break-word;
+    white-space: normal;
+    color: #000;
+    background-color: #fff;
+    border: 1PX solid #ddd;
+    border-radius: 5px;
+
+}

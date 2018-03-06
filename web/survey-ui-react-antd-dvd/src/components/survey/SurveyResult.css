@@ -1,0 +1,35 @@
+
+.normal {
+}
+.rightChoiceSelected {
+    color: green !important;
+}
+
+.wrongChoiceSelected {
+    color: red !important;
+}
+
+.score {
+    font-size: 40px;
+    margin: 5px;
+    color: red;
+}
+.choice{
+    display: block;
+    outline: 0 none;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 13px;
+    height: auto;
+    line-height: 20px;
+    overflow: hidden;
+    word-break: break-word;
+    white-space: normal;
+    color: #000;
+    background-color: #fff;
+    border: 1PX solid #ddd;
+    border-radius: 5px;
+
+}
