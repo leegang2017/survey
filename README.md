@@ -1,7 +1,7 @@
 # survey
 
 
-本项目是一个做题的demo, 包括egg.js, mongodb的后台，提供restful服务, 前端现在有2个，一个是用angular5和ng ant design做的，另一个是react和ant design mobile做的
+本项目是一个做题的demo, 包括egg.js, mongodb的后台，提供restful服务, 前端现在有3个，一个是用angular5和ng ant design做的，另一个是react和ant design mobile做的,还有一个是ionic版本
 
 很简单的4步就可以开发一个新的restful服务：
 1) 定义一个model,比如app/model/survey.js
