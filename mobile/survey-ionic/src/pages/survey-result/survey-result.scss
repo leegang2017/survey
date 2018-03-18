@@ -1,0 +1,16 @@
+app-survey-result{
+    .right-choice-selected {
+        color: green;
+    }
+    
+    .wrong-choice-selected {
+        color: red;
+    }
+    
+    .score {
+        font-size: 40px;
+        margin: 5px;
+        color: red;
+    }
+
+}

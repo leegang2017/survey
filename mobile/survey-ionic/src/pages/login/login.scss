@@ -1,0 +1,35 @@
+page-login {
+  .margin-30 {
+    margin: 30px;
+  }
+
+  .bg-icon {
+    width: 100px;
+    height: auto;
+    margin-top: 80px;
+    margin-bottom: 30px;
+  }
+  .input-div {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px !important;
+  }
+  .input-icon {
+    color: rgb(16, 136, 233);
+    font-size: 30px;
+    width: 30px;
+  }
+  .input-content {
+    background-color: transparent;
+    color: #000000 !important;
+    font-size: 18px;
+  }
+  .margin-top-50 {
+    margin-top: 50px !important;
+  }
+  .button-width {
+    width: 80%;
+  }
+
+}

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="primary" text-center>
+    <ion-title></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="md-log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        得分:
+        <span class="score">{{surveyRecord?.conclusion?.score}}</span>
+      </ion-card-header>
+      <ion-card-content>
+        {{surveyRecord.conclusion?.content}}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngFor="let question of page.content;let i=index;">
+      <ion-card-header>
+        {{(page.pageIndex -1)* page.pageSize + i + 1}}、{{question.content}}
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let choice of question.choices;let j=index;">
+          <button ion-button color="light" [class.choice-selected]="choice.select" [class.right-choice-selected]="choice.select && choice.score != 0"
+            [class.wrong-choice-selected]="choice.select && choice.score == 0">
+            <span>{{letters[j]}}、{{choice.content}}</span>
+          </button>
+        </p>
+        <p class="margin-10 right-choice-selected">正确答案: {{getRightAnswer(question.choices)}}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-toolbar>
+      <button ion-button icon-left (click)="changePage(page.pageIndex -1)" [disabled]="page.pageIndex <= 1">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+        上一页
+      </button>
+      {{page.pageIndex}}/{{page.pageTotalIndex}}
+      <button ion-button icon-right (click)="changePage(page.pageIndex + 1)" [disabled]="page.pageIndex >= page.pageTotalIndex">
+        下一页
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-toolbar>
+  </ion-list>
+</ion-content>

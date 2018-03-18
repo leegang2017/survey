@@ -1,0 +1,19 @@
+<ion-content >
+    <div text-center>
+
+        <div class="margin-30">
+            <ion-row class="input-div">
+                <ion-icon name="person" color="energized" class="input-icon"></ion-icon>
+                <ion-input class="input-content" type="number" [(ngModel)]="loginUser.phone"
+                           placeholder="请输入身份证号码"></ion-input>
+            </ion-row>
+            <ion-row class="input-div margin-top-50">
+                <ion-icon name="lock" color="energized" class="input-icon"></ion-icon>
+                <ion-input class="input-content" type="password" [(ngModel)]="loginUser.password"
+                           placeholder="请输入登录密码"></ion-input>
+            </ion-row>
+        </div>
+
+        <button ion-button round class="button-width" color="energized" (click)="login()">登录</button>
+    </div>
+</ion-content>

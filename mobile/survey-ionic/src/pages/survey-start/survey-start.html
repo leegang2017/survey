@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="primary" text-center>
+    <ion-title></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="md-log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let question of page.content;let i=index;">
+      <ion-card-header>
+        {{(page.pageIndex -1)* page.pageSize + i + 1}}、{{question.content}}
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let choice of question.choices;let j=index;">
+          <button ion-button color="light" [class.choice-selected]="choice.select" (click)="selectField(question, choice)">
+            <span>{{letters[j]}}、{{choice.content}}</span>
+          </button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-toolbar>
+      <button ion-button icon-left (click)="changePage(page.pageIndex -1)" [disabled]="page.pageIndex <= 1">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+        上一页
+      </button>
+      {{page.pageIndex}}/{{page.pageTotalIndex}} 
+      <button ion-button icon-right (click)="changePage(page.pageIndex + 1)" [disabled]="page.pageIndex >= page.pageTotalIndex">
+        下一页
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+      <button ion-button  item-right (click)="showConfirm()">提交</button>
+    </ion-toolbar>
+
+    
+  </ion-list>
+</ion-content>
