@@ -1,0 +1,32 @@
+<div nz-row [nzGutter]="8" class="margin-30">
+    <div nz-row [nzGutter]="8">
+      <div nz-col [nzSpan]="8">
+        {{_chooseRecord.name}}
+      </div>
+    </div>
+  
+    <div nz-row [nzGutter]="8">
+      <div nz-col [nzSpan]="8">
+        <span>角色：</span>
+  
+        <div class="border-bottom margin-top-24">
+          <label nz-checkbox [(ngModel)]="allChecked" (ngModelChange)="updateAllChecked()" [nzIndeterminate]="indeterminate">
+            <span>全部</span>
+          </label>
+        </div>
+        <br>
+        <nz-checkbox-group [(ngModel)]="checkOptionsOne" (ngModelChange)="updateSingleChecked()"></nz-checkbox-group>
+  
+      </div>
+  
+    </div>
+  </div>
+  <div class="customize-footer">
+    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="emitDataOutside()">
+      保存
+    </button>
+    <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
+      返回
+    </button>
+  </div>
+  <nz-spin [nzSpinning]="_isSpinning"></nz-spin>

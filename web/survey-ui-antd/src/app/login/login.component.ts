@@ -6,8 +6,8 @@ import {
 } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
-import { StorageService, AuthService } from '../common.service';
-import { RestService } from '../rest.service';
+import { StorageService, AuthService } from '../providers/common.service';
+import { RestService } from '../providers/rest.service';
 
 @Component({
   selector: 'app-login',
@@ -33,23 +33,45 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.valid) {
       console.log('valid' + this.validateForm.value)
       this._isSpinning = true;
-      this.rest.login(this.validateForm.value.phone, this.validateForm.value.password).subscribe(result => {
-        if (result && result._id) {
-          this._message.info('登录成功');
-          this.storage.set('loginUser', result);
-          this.authService.login();
-          this.router.navigate(['survey/surveyStart']);
-        } else {
+
+      this.rest.token(this.validateForm.value.phone, this.validateForm.value.password).subscribe(token => {
+        this.storage.set('authorizationToken', token);
+        this.rest.login(this.validateForm.value.phone, this.validateForm.value.password).subscribe(this.parseLogin, (error) => {
+          this._isSpinning = false;
           this._message.info('登录失败');
-        }
-        this._isSpinning = false;
+        })
+
       }, (error) => {
         this._isSpinning = false;
         this._message.info('登录失败');
       })
+
+      // this.rest.login(this.validateForm.value.phone, this.validateForm.value.password).subscribe(result => {
+      //   if (result && result._id) {
+      //     this._message.info('登录成功');
+      //     this.authService.login(result);
+      //     this.router.navigate(['survey/surveyStart']);
+      //   } else {
+      //     this._message.info('登录失败');
+      //   }
+      //   this._isSpinning = false;
+      // }, (error) => {
+      //   this._isSpinning = false;
+      //   this._message.info('登录失败');
+      // })
     }
   }
 
+  parseLogin = (result)=> {
+    if (result && result._id) {
+      this._message.info('登录成功');
+      this.authService.login(result);
+      this.router.navigate(['survey/surveyStart']);
+    } else {
+      this._message.info('登录失败');
+    }
+    this._isSpinning = false;
+  }
 
   ngOnInit() {
     this.validateForm = this.fb.group({

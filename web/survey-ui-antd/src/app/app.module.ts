@@ -5,35 +5,21 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-
-import { HomeLayoutComponent } from './layouts/home-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
+import { LayoutModule } from './layouts/layout.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 
 import { AppConfig } from './app.config';
-import { RestService } from './rest.service';
-import { SurveyStartComponent } from './survey-start/survey-start.component';
-import { SurveyManageComponent } from './survey-manage/survey-manage.component';
-import { NzModalSurveyChoicesEditComponent } from './nz-modal-survey-choices-edit/nz-modal-survey-choices-edit.component';
-import { StorageService, AuthService } from './common.service';
-import { SurveyResultComponent } from './survey-result/survey-result.component';
-import { CleanComponent } from './clean/clean.component';
+import { CoreModule } from './providers/core.module';
+import { ProviderModule } from './providers/provider.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeLayoutComponent,
-    LoginLayoutComponent,
     LoginComponent,
-    SurveyStartComponent,
-    SurveyManageComponent,
-    NzModalSurveyChoicesEditComponent,
-    SurveyResultComponent,
-    CleanComponent
   ],
   imports: [
     BrowserModule,
@@ -41,13 +27,15 @@ import { CleanComponent } from './clean/clean.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgZorroAntdModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    LayoutModule,
+    CoreModule,
+    ProviderModule,
   ],
   entryComponents: [
-    NzModalSurveyChoicesEditComponent
   ],
 
-  providers: [AppConfig, RestService, StorageService, AuthService],
+  providers: [AppConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,13 +5,13 @@ module.exports = app => {
   const tempSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
-    isMale: Boolean,
-    role: String,   //类型: OPERATOR,操作员,USER老人
+    shortName: String, //简写，用来登陆
+    dob: Number, // 生日
+    isMale: Boolean,// 性别
+    roles: Mixed, // 角色权限
     phone: String,
     password: String,
-    identityNumber: String,
-    company: String,
-    department: String,
+    identityNumber: String, // 身份证号码
     header: String,
     status: String,
     created: Number,

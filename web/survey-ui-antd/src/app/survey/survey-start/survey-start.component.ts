@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RestService } from '../rest.service';
+import { RestService } from '../../providers/rest.service';
 import { NzMessageService } from 'ng-zorro-antd';
-import { StorageService } from '../common.service';
+import { StorageService } from '../../providers/common.service';
 
 
 @Component({

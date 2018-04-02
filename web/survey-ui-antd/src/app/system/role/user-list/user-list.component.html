@@ -1,0 +1,76 @@
+<div class="bg-white" style="padding: 24px">
+  <form nz-form class="padding-bottom-15" [nzLayout]="'inline'">
+    <div nz-row nz-form-item>
+      <div nz-form-label>
+        <label>姓名</label>
+      </div>
+      <div nz-form-control>
+        <nz-input style="width: 120px" [(ngModel)]="_searchParams.likes.name" name="name"></nz-input>
+      </div>
+    </div>
+    <div nz-row nz-form-item>
+      <div nz-form-label>
+        <label>电话号码</label>
+      </div>
+      <div nz-form-control>
+        <nz-input style="width: 120px" [(ngModel)]="_searchParams.likes.phone" name="phone"></nz-input>
+      </div>
+    </div>
+    <div nz-row nz-form-item>
+      <div nz-form-label>
+        <label>身份证号</label>
+      </div>
+      <div nz-form-control>
+        <nz-input [(ngModel)]="_searchParams.likes.identityNumber" name="identityNumber"></nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <button nz-button [nzType]="'primary'" (click)="clickSearch()">搜索</button>
+      </div>
+    </div>
+  </form>
+
+  <nz-table #nzTable [nzAjaxData]="_page.content" nzShowSizeChanger [nzLoading]="_loading" [nzTotal]="_page.count" [(nzPageIndex)]="_page.page"
+    (nzPageIndexChange)="refreshData()" [(nzPageSize)]="_page.pageSize" (nzPageSizeChange)="refreshData()">
+    <thead nz-thead>
+      <tr>
+        <th nz-th>
+          <span>姓名</span>
+        </th>
+        <th nz-th>
+          <span>电话号码</span>
+        </th>
+        <th nz-th>
+          <span>联系电话</span>
+        </th>
+        <th nz-th>
+          <span>身份证号</span>
+        </th>
+        <th nz-th>
+          <span>角色</span>
+        </th>
+        <th nz-th>
+          <span>操作</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+        <td nz-td>
+          <a>{{data.name}}</a>
+        </td>
+        <td nz-td>{{data.phone}}</td>
+        <td nz-td>{{data.phone}}</td>
+        <td nz-td>{{data.identityNumber}}</td>
+        <td nz-td>{{data.roles | roles}}</td>
+        <td nz-td>
+          <span>
+            <a (click)="gotoRolesEdit(data)">编辑角色</a>
+            <span nz-table-divider></span>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

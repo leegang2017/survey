@@ -5,7 +5,7 @@ const VALIDATOR = Symbol('Helpers#validator');
 
 module.exports = {
   sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
+    return new Promise(resolve => setTimeout(resolve, ms));
   },
   md5(str) {
     const md5 = crypto.createHash('md5');
@@ -14,17 +14,24 @@ module.exports = {
   getMillisecond(time) {
     return moment(time).valueOf();
   },
+  getNameSuffix(name) {
+    const filenames = name.split('.');
+    if (filenames.length > 1) {
+      const suffix = filenames[filenames.length-1];
+      return suffix;
+    }
+  },
   validator() {
     if (this[VALIDATOR]) {
       // 例如，从 header 中获取，实际情况肯定更复杂
       return this[VALIDATOR];
     }
     const validator = {
-      toString (str) {
+      toString(str) {
         if (str) {
           return str;
         }
-        return "";
+        return '';
       },
       identityCodeValid(code) {
         // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
@@ -33,8 +40,8 @@ module.exports = {
           return false;
         }
         return true;
-      }
-    }
+      },
+    };
 
     this[VALIDATOR] = validator;
     return this[VALIDATOR];

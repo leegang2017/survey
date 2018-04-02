@@ -1,0 +1,114 @@
+<div>
+  <nz-layout class="bg-white">
+    <nz-content>
+      <div nz-row [nzGutter]="8" style="padding:12px">
+        <div nz-col [nzSpan]="13">
+          <nz-breadcrumb>
+            <nz-breadcrumb-item>当前位置：人员管理</nz-breadcrumb-item>
+            <nz-breadcrumb-item>基本信息</nz-breadcrumb-item>
+          </nz-breadcrumb>
+        </div>
+        <div nz-col [nzSpan]="8">
+
+        </div>
+
+      </div>
+      <nz-table #nzTable [nzAjaxData]="_page.content" nzShowSizeChanger [nzPageSizeSelectorValues]="_nzPageSizeSelectorValues"
+        [nzLoading]="_loading" [nzShowFooter]="true" [nzTotal]="_page.count" [(nzPageIndex)]="_page.page" (nzPageIndexChange)="refreshData()"
+        [(nzPageSize)]="_page.pageSize" (nzPageSizeChange)="refreshData()">
+        <thead nz-thead>
+          <tr>
+            <th nz-th>
+              <span>姓名</span>
+            </th>
+            <th nz-th>
+              <span>年龄</span>
+            </th>
+            <th nz-th>
+              <span>性别</span>
+            </th>
+            <th nz-th>
+              <span>简称</span>
+            </th>
+            <th nz-th>
+              <span>身份证号</span>
+            </th>
+            <th nz-th>
+              <span>联系电话</span>
+            </th>
+            <th nz-th>
+              <span>操作</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody nz-tbody>
+          <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+            <td nz-td>
+              <a>{{data.name}}</a>
+            </td>
+            <td nz-td>{{data.dob | age}}</td>
+            <td nz-td>{{data.isMale? '男': '女'}}</td>
+            <td nz-td>{{data.shortName}}</td>
+            <td nz-td>{{data.identityNumber}}</td>
+            <td nz-td>{{data.phone}}</td>
+            <td nz-td>
+              <span>
+                <a  (click)="edit(data)">{{auth.hasPermission('基本信息编辑')?'编辑':'查看'}}</a>
+                <span nz-table-divider></span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+        <div nz-table-footer class="text-center" >
+          <button nz-button [nzType]="'primary'" (click)="edit()">
+            <span>添加</span>
+          </button>
+        </div>
+      </nz-table>
+    </nz-content>
+    <nz-sider nzCollapsible [nzCollapsedWidth]="0" [nzBreakpoint]="'lg'" [nzWidth]="220" class="search-sider whiteframe-z2 ">
+      <div class="padding">
+        <div nz-row [nzGutter]="2">
+          <div nz-col [nzSpan]="20">
+            <button nz-button [nzType]="'primary'" [nzSize]="'large'" class="full-width" (click)="clickSearch();">
+              <span>确定</span>
+            </button>
+          </div>
+
+
+        </div>
+        <form nz-form class="padding-bottom-15" [nzLayout]="'inline'">
+          <div nz-row nz-form-item>
+            <div nz-form-label>
+              <label>姓名</label>
+            </div>
+            <div nz-form-control>
+              <nz-input [(ngModel)]="_searchParams.likes.name" name="name" [nzPlaceHolder]="'输入姓名查找'"></nz-input>
+            </div>
+          </div>
+          <div nz-row nz-form-item>
+            <div nz-form-label>
+              <label>身份证号</label>
+            </div>
+            <div nz-form-control>
+              <nz-input [(ngModel)]="_searchParams.likes.identityNumber" name="identityNumber" [nzPlaceHolder]="'输入身份证查找'"></nz-input>
+            </div>
+          </div>
+
+          <div nz-row nz-form-item>
+            <div nz-form-label>
+              <label>出生日期</label>
+            </div>
+            <div nz-form-control>
+              <nz-datepicker name="dobStart" [(ngModel)]="times.dobStart" [nzPlaceHolder]="'开始时间'" [nzAllowClear]="true"></nz-datepicker>
+              <nz-datepicker name="dobEnd" [(ngModel)]="times.dobEnd" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'结束时间'"></nz-datepicker>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </nz-sider>
+  </nz-layout>
+
+
+</div>

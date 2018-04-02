@@ -1,0 +1,35 @@
+<div class="bg-white padding-15">
+  <nz-table #nzTable
+            [nzAjaxData]="_page.content"
+            nzShowSizeChanger
+            [nzLoading]="_loading"
+            [nzTotal]="_page.count"
+            [(nzPageIndex)]="_page.page"
+            (nzPageIndexChange)="refreshData()"
+            [nzPageSize]="10"
+  >
+    <thead nz-thead>
+    <tr>
+      <th nz-th><span>角色名称</span></th>
+      <th nz-th><span>操作</span></th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+      <td nz-td>
+        <a>{{data.name}}</a>
+      </td>
+      <td nz-td>
+        <span>
+          <a (click)="gotoEdit(data)">编辑</a>
+          <span nz-table-divider></span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+  <div class="text-center">
+    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="gotoEdit(undefined)" >新建角色</button>
+  </div>
+</div>

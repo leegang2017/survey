@@ -1,0 +1,12 @@
+<div nz-row class="toolbar">
+    <div nz-col [nzSpan]="8" class="left">
+        <p class="md-subhead" hide-xs>{{timemask}}</p>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="8" class="right">
+        {{loginUser.name}} {{loginUser.role}}
+
+        <button nz-button nzGhost (click)="logout()">
+            <i class="anticon anticon-poweroff"></i>
+        </button>
+    </div>
+</div>

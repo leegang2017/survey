@@ -1,0 +1,11 @@
+.toolbar {
+    background: #404040;
+    color: rgba(255,255,255,0.87);
+}
+.left {
+    padding-left: 20px;
+}
+.right {
+    text-align: right;
+    padding-right: 50px;
+}

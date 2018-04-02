@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { RestService } from '../rest.service';
+import { RestService } from '../../providers/rest.service';
 import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 import { NzModalSurveyChoicesEditComponent } from '../nz-modal-survey-choices-edit/nz-modal-survey-choices-edit.component';
 

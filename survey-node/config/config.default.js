@@ -18,7 +18,11 @@ module.exports = appInfo => {
   };
   // add your config here
   config.middleware = [];
-  
+
+  config.oAuth2Server = {
+    grants: [ 'password', 'refresh_token' ],
+    expiresIn: 3600,
+  };  
   // add your config here
   config.mongoose = {
     // url: 'mongodb://192.168.0.111/survey',

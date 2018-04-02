@@ -1,0 +1,115 @@
+<nz-tabset>
+    <nz-tab>
+      <ng-template #nzTabHeading>
+        员工资料
+      </ng-template>
+      <span>
+        <form nz-form [formGroup]="validateForm" class="margin-30">
+          <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="6">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="8">
+                  <label nz-form-item-required>姓名</label>
+                </div>
+  
+                <div nz-form-control nz-col [nzSpan]="16">
+                  <nz-input formControlName="name" [nzPlaceHolder]="'姓名'" [nzSize]="'large'">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="validateForm.controls.name.dirty&&validateForm.controls.name.hasError('required')">请输入姓名!</div>
+                </div>
+              </div>
+            </div>
+            <div nz-col [nzSpan]="6">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="8">
+                  <label nz-form-item-required>简称</label>
+                </div>
+  
+                <div nz-form-control nz-col [nzSpan]="16">
+                  <nz-input formControlName="shortName" [nzPlaceHolder]="'简称'" [nzSize]="'large'">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="validateForm.controls.shortName.dirty&&validateForm.controls.shortName.hasError('required')">请输入简称!</div>
+                </div>
+              </div>
+            </div>
+            <div nz-col [nzSpan]="8">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="8">
+                  <label nz-form-item-required>身份证号</label>
+                </div>
+  
+                <div nz-form-control nz-col [nzSpan]="16">
+                  <nz-input formControlName="identityNumber" [nzPlaceHolder]="'身份证号'" [nzSize]="'large'" (nzBlur)="onChangeIdentityNumber($event)">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="validateForm.controls.identityNumber.dirty">
+                    <div *ngIf="validateForm.controls.identityNumber.hasError('required')">
+                      请输入身份证号!
+                    </div>
+                    <div *ngIf="validateForm.controls.identityNumber.hasError('pattern')">
+                      身份证号格式错误!
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div nz-col [nzSpan]="4">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="8">
+                  <label nz-form-item-required>性别</label>
+                </div>
+  
+                <div nz-form-control nz-col [nzSpan]="16">
+                  <nz-select formControlName="isMale" nzAllowClear [nzPlaceHolder]="'性别'" nzShowSearch>
+                    <nz-option [nzLabel]="'男'" [nzValue]="true">
+                    </nz-option>
+                    <nz-option [nzLabel]="'女'" [nzValue]="false">
+                    </nz-option>
+                  </nz-select>
+                  <div nz-form-explain *ngIf="validateForm.controls.isMale.dirty&&validateForm.controls.isMale.hasError('required')">请输入性别!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="6">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="8">
+                  <label nz-form-item-required>出生日期</label>
+                </div>
+  
+                <div nz-form-control nz-col [nzSpan]="16">
+  
+                  <nz-datepicker formControlName="dob" [nzPlaceHolder]="'出生日期'" [nzSize]="'large'"></nz-datepicker>
+  
+                  <div nz-form-explain *ngIf="validateForm.controls.dob.dirty&&validateForm.controls.dob.hasError('required')">请输入出生日期!</div>
+                </div>
+              </div>
+            </div>
+            <div nz-col [nzSpan]="8">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="8">
+                  <label nz-form-item-required>电话</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16">
+                  <nz-input formControlName="phone" [nzPlaceHolder]="'电话'" [nzSize]="'large'">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="validateForm.controls.phone.dirty&&validateForm.controls.phone.hasError('required')">请输入联系电话!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </span>
+    </nz-tab>
+  </nz-tabset>
+  <div class="customize-footer">
+    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="emitDataOutside()" >
+      保存
+    </button>
+    <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
+      返回
+    </button>
+  </div>
+  <nz-spin [nzSpinning]="_isSpinning"></nz-spin>
