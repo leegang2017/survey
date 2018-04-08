@@ -12,38 +12,38 @@
                 </span>
                 <ul>
                     <li nz-menu-item routerLink="/survey/surveyStart" routerLinkActive="ant-menu-item-selected">开始竟答</li>
-                    <li nz-menu-item routerLink="/survey/surveyManage" routerLinkActive="ant-menu-item-selected">题库管理</li>
+                    <li *permission="'题库管理'" nz-menu-item routerLink="/survey/surveyManage" routerLinkActive="ant-menu-item-selected">题库管理</li>
                 </ul>
             </li>
-            <li nz-submenu [nzOpen]="true">
+            <li nz-submenu [nzOpen]="true" *permission="'userManage'">
                 <span title>
                     <i class="anticon anticon-appstore"></i>
                     <span>人员管理</span>
                 </span>
                 <ul>
-                    <li nz-menu-item routerLink="/user/list" routerLinkActive="ant-menu-item-selected">人员信息</li>
+                    <li *permission="'人员信息'"  nz-menu-item routerLink="/user/list" routerLinkActive="ant-menu-item-selected">人员信息</li>
                 </ul>
             </li>
 
-            <li nz-submenu [nzOpen]="true">
+            <li nz-submenu [nzOpen]="true" *permission="'systemManage'">
                 <span title>
                     <i class="anticon anticon-appstore"></i>
                     <span>系统管理</span>
                 </span>
                 <ul>
-                    <li nz-menu-item routerLink="/system/role/list">角色管理</li>
-                    <li nz-menu-item routerLink="/system/operator/list">成员角色管理</li>
+                    <li *permission="'角色管理'" nz-menu-item routerLink="/system/role/list">角色管理</li>
+                    <li *permission="'成员角色管理'" nz-menu-item routerLink="/system/operator/list">成员角色管理</li>
                 </ul>
             </li>
         </ul>
     </nz-sider>
     <nz-layout>
-        <nz-header style="background: #fff; padding:0;">
-            <app-home-header-layout></app-home-header-layout>
-        </nz-header>
-        <nz-content style="margin:24px 16px 0;">
-            <router-outlet></router-outlet>
-        </nz-content>
-        <nz-footer style="text-align: center;">SURVEY</nz-footer>
+    <nz-header class="header">
+      <app-home-header-layout></app-home-header-layout>
+    </nz-header>
+    <nz-content class="content" >
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer class="footer" >SURVEY</nz-footer>
     </nz-layout>
 </nz-layout>

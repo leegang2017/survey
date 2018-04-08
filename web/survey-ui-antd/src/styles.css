@@ -15,7 +15,11 @@
 .margin-10 {
     margin: 10px;
 }
+ 
 
+.bg-white {
+  background-color: white !important;
+}
 
 .search-sider {
     background-color: white !important;
@@ -35,4 +39,14 @@
   .padding {
     padding: 17px 16px 15px 20px !important;
   }
-    
+
+  .text-center {
+    text-align: center;
+  }
+
+
+.customize-edit-buttons {
+  padding: 10px 18px 0 10px;
+  text-align: right;
+  margin: 15px;
+}

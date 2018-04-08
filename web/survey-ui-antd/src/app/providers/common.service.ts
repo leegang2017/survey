@@ -83,10 +83,8 @@ export class AuthService {
   }
 
   login(user) {
-    if (['GOV', 'ADMIN','COMPANY'].includes(user.role) && user.roles && user.roles[this.config.system]) {
+    if ( user.roles && user.roles[this.config.system]) {
       user.totalRoles = Object.values(user.roles[this.config.system]).reduce((a, b) => ([...a, ...b]), []);
-    } else if (user.roles && user.roles[this.config.system] && user.organization) {
-      user.totalRoles = Object.values(user.roles[this.config.system][user.organization._id]).reduce((a, b) => ([...a, ...b]), []);
     } else {
       user.totalRoles = [];
     }

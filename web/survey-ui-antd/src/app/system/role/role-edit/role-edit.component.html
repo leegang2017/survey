@@ -30,6 +30,17 @@
     <nz-card >
       <ng-template #body>
         <div class="border-bottom margin-top-24">
+          <label nz-checkbox [(ngModel)]="allChecked.surveyManage" (ngModelChange)="updateAllChecked('surveyManage')" [nzIndeterminate]="indeterminate['surveyManage']">
+            <span>题库管理</span>
+          </label>
+        </div>
+        <br>
+        <nz-checkbox-group [(ngModel)]="checkOptionsOne.surveyManage" (ngModelChange)="updateSingleChecked('surveyManage')"></nz-checkbox-group>
+      </ng-template>
+    </nz-card>
+    <nz-card >
+      <ng-template #body>
+        <div class="border-bottom margin-top-24">
           <label nz-checkbox [(ngModel)]="allChecked.systemManage" (ngModelChange)="updateAllChecked('systemManage')" [nzIndeterminate]="indeterminate['systemManage']">
             <span>系统管理</span>
           </label>
@@ -39,7 +50,7 @@
       </ng-template>
     </nz-card>
   </div>
-  <div class="customize-footer">
+  <div class="customize-edit-buttons">
     <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="_submitForm()">
       保存
     </button>

@@ -36,8 +36,7 @@ export class RoleEditComponent implements OnInit {
       { label: '人员信息删除', value: '人员信息删除', checked: false },
     ],
     surveyManage: [
-      { label: '员工统计', value: '员工统计', checked: false },
-      { label: '服务流水统计', value: '服务流水统计', checked: false },
+      { label: '题库管理', value: '题库管理', checked: false },
     ],
     systemManage: [
       { label: '角色管理', value: '角色管理', checked: false },

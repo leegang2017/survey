@@ -1,7 +1,7 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
   <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="6" [nzXs]="24" nz-form-item-required>
-        问卷名称
+      问卷名称
     </div>
     <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
       <nz-input [nzSize]="'large'" formControlName="name" [nzId]="'name'"></nz-input>
@@ -10,37 +10,37 @@
   </div>
   <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-        题目编辑
+      题目编辑
     </div>
     <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
       <div *ngFor="let question of survey.questions;let i = index" nz-row>
-        <div nz-form-label nz-col [nzSpan]="4">
+        <div nz-form-label nz-col [nzSpan]="3">
           <label [attr.for]="'content'+question.id">{{i + 1}}、题目</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="i==0?0:4">
-          <nz-input style="width: 60%; margin-right:8px;" [nzSize]="'large'" [nzPlaceHolder]="'placeholder'" [formControlName]="'content'+question.id"
+        <div nz-form-control nz-col [nzSpan]="8" >
+          <nz-input  [nzSize]="'large'" [nzPlaceHolder]="'placeholder'" [formControlName]="'content'+question.id"
             [nzId]="question.id">
           </nz-input>
         </div>
-        <div nz-form-label nz-col [nzSpan]="4">
+        <div nz-form-label nz-col [nzSpan]="2">
           <label>类型</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="i==0?0:4">
+        <div nz-form-control nz-col [nzSpan]="3" >
           <nz-select [formControlName]="'category'+question.id" [nzSize]="'large'">
             <nz-option [nzLabel]="'单选'" [nzValue]="'SINGLE'"></nz-option>
             <nz-option [nzLabel]="'多选'" [nzValue]="'MULTIPLE'"></nz-option>
           </nz-select>
         </div>
         <div nz-form-label nz-col [nzSpan]="4">
-          <label>选项</label>
-          <button nz-button (click)="showModalForComponent(question, $event)">
-              <i class="anticon dynamic-delete-button"></i>
+          <button nz-button [nzType]="'default'" (click)="showModalForComponent(question, $event)">
+            <span>选项选择</span>
+            <i class="anticon anticon-edit"></i>
           </button>
         </div>
         <div nz-form-label nz-col [nzSpan]="4">
-          <label>删除</label>
           <button nz-button (click)="removeField(question, $event)">
-              <i class="anticon anticon-edit"></i>
+              <span>删除</span>
+            <i class="anticon anticon-delete"></i>
           </button>
         </div>
       </div>
@@ -48,35 +48,35 @@
     <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
       <button nz-button [nzType]="'dashed'" [nzSize]="'large'" style="width:60%" (click)="addField($event)">
         <i class="anticon anticon-plus"></i>
-        <span> Add field</span>
+        <span> 添加题目</span>
       </button>
     </div>
   </div>
 
   <div nz-form-item nz-row *ngFor="let conclusion of survey.conclusions;let i = index">
-      <div nz-form-label nz-col [nzSpan]="4" *ngIf="i==0">
-          结论编辑
-      </div>
-      <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="i==0?0:4">
-  
-        <nz-input [nzSize]="'large'" [formControlName]="'conclusionContent'+conclusion.id"> [nzId]="'conclusionContent'+conclusion.id"></nz-input>
-        <nz-input-number [nzSize]="'large'" [formControlName]="'regionStart'+conclusion.id"> [nzId]="'regionStart'+conclusion.id"></nz-input-number>
-        <nz-input-number [nzSize]="'large'" [formControlName]="'regionEnd'+conclusion.id"> [nzId]="'regionEnd'+conclusion.id"></nz-input-number>
-        <i class="anticon anticon-minus-circle-o dynamic-delete-button" (click)="removeConclusionField(conclusion,$event)"></i>
-  
-      </div>
+    <div nz-form-label nz-col [nzSpan]="4" *ngIf="i==0">
+      结论编辑
     </div>
-    <div nz-form-item nz-row>
-      <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
-        <button nz-button [nzType]="'dashed'" [nzSize]="'large'" style="width:60%" (click)="addConclusionField($event)">
-          <i class="anticon anticon-plus"></i>
-          <span> Add field</span>
-        </button>
-      </div>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="i==0?0:4">
+
+      <nz-input [nzSize]="'large'" [formControlName]="'conclusionContent'+conclusion.id"> [nzId]="'conclusionContent'+conclusion.id"></nz-input>
+      <nz-input-number [nzSize]="'large'" [formControlName]="'regionStart'+conclusion.id"> [nzId]="'regionStart'+conclusion.id"></nz-input-number>
+      <nz-input-number [nzSize]="'large'" [formControlName]="'regionEnd'+conclusion.id"> [nzId]="'regionEnd'+conclusion.id"></nz-input-number>
+      <i class="anticon anticon-minus-circle-o dynamic-delete-button" (click)="removeConclusionField(conclusion,$event)"></i>
+
     </div>
+  </div>
+  <div nz-form-item nz-row>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
+      <button nz-button [nzType]="'dashed'" [nzSize]="'large'" style="width:60%" (click)="addConclusionField($event)">
+        <i class="anticon anticon-plus"></i>
+        <span> 添加成绩</span>
+      </button>
+    </div>
+  </div>
 
   <div nz-form-item nz-row>
-    <div nz-form-control>
+    <div nz-form-control class="customize-edit-buttons" >
       <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">更新</button>
     </div>
   </div>

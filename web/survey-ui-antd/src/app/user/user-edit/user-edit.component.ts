@@ -152,4 +152,9 @@ export class UserEditComponent implements OnInit {
         );
     }
   }
+
+  handleCancel(e) {
+    this.subject.destroy("onCancel");
+  }
+
 }
