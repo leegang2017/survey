@@ -8,6 +8,7 @@ module.exports = app => {
   router.options('/**', controller.home.index);
   router.post(api + '/oauth2/token', app.oAuth2Server.token());
   router.get(api + '/users/login', controller.users.login);
+  router.get(api + '/auth/users/login',app.oAuth2Server.authenticate(),  controller.users.login);
   router.post(api + '/users/search', controller.users.index);
   router.get(api + '/users/getUserWithRoles/:id', controller.users.getUserWithRoles);
   router.get(api + '/users/login', controller.users.login);

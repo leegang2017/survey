@@ -66,7 +66,7 @@ export class RestService {
   }
 
   login(phone: string, password: string): Observable<any> {
-    return this.http.get(this.config.ServiceURI + `users/login?phone=${phone}&password=${password}`);
+    return this.http.get(this.config.ServiceURI + `auth/users/login?phone=${phone}&password=${password}`);
   }
 
   getUsers(searchParams = {}, pagin: any = {}): Observable<any> {
