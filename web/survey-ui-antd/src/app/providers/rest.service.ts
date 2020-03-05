@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService, ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!req.headers.has('Authorization')) {
+    if (!req.headers.has('Authorization') && !(req.url.lastIndexOf('auth/login') >= 0)) {
       // Get the auth header from the service.
       const token = this.authService.getAuthorizationToken();
       // Clone the request to add the new header.
@@ -66,7 +66,19 @@ export class RestService {
   }
 
   login(phone: string, password: string): Observable<any> {
-    return this.http.get(this.config.ServiceURI + `auth/users/login?phone=${phone}&password=${password}`);
+    return this.http.post(this.config.ServiceURI + `auth/users/login`, {phone, password});
+  }
+
+  jwtToken(phone: string, password: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(this.config.ServiceURI + `auth/login`, {"username":phone, "password": password}, httpOptions);
+  }
+
+  jwtProfile(): Observable<any> {
+    return this.http.get(this.config.ServiceURI + `users/profile`);
   }
 
   getUsers(searchParams = {}, pagin: any = {}): Observable<any> {

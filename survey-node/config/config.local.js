@@ -4,7 +4,8 @@ module.exports = appInfo => {
   const config = exports = {};
   
   config.mongoose = {
-    url: 'mongodb://127.0.0.1/survey',
+    // url: 'mongodb://127.0.0.1/survey',
+    url: 'mongodb://survey:survey123@39.104.174.135:3308/surveydev?authMode=scram-sha1&rm.keepAlive=true&rm.tcpNoDelay=true&rm.nbChannelsPerNode=10',
     options: {
       useMongoClient: true,
       reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect

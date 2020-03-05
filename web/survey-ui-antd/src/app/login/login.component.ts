@@ -62,6 +62,28 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  jwtSubmitForm() {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+    }
+    if (this.validateForm.valid) {
+      console.log('valid' + this.validateForm.value)
+      this._isSpinning = true;
+
+      this.rest.jwtToken(this.validateForm.value.phone, this.validateForm.value.password).subscribe(token => {
+        this.storage.set('authorizationToken', token);
+        this.rest.jwtProfile().subscribe(this.parseLogin, (error) => {
+          this._isSpinning = false;
+          this._message.info('登录失败');
+        })
+
+      }, (error) => {
+        this._isSpinning = false;
+        this._message.info('登录失败');
+      })
+    }
+  }
+
   parseLogin = (result)=> {
     if (result && result._id) {
       this._message.info('登录成功');

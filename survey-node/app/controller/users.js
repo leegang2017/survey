@@ -24,7 +24,7 @@ class UsersController extends CommonController {
     await super.create(ctx);
   }
   async login(ctx) {
-    const user = await this.service.users.login(ctx.query.phone, ctx.query.password);
+    const user = await this.service.users.login(ctx.request.body.phone, ctx.request.body.password);
     await this.getRolesByUser(user);
     ctx.body = user;
   }
