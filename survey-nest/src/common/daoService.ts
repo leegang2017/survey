@@ -21,8 +21,12 @@ export class DaoService<T> {
   }
 
   async index(body, pagin?, selectFileds?) {
-
-    return await this.findByPage(this.queryCriteria(body), pagin, selectFileds, this.sort(body));
+    return await this.findByPage(
+      this.queryCriteria(body),
+      pagin,
+      selectFileds,
+      this.sort(body),
+    );
   }
 
   async show(_id, selectFileds?) {
@@ -31,12 +35,18 @@ export class DaoService<T> {
 
   async update(_id, params) {
     params.updated = Date.now();
-    const result = await this.model.findOneAndUpdate({ _id }, { $set: params }, { new: true });
+    const result = await this.model.findOneAndUpdate(
+      { _id },
+      { $set: params },
+      { new: true },
+    );
     return { _id: result._id };
   }
 
   async create(request) {
-    if (!request) { return; }
+    if (!request) {
+      return;
+    }
     request._id = mongoose.Types.ObjectId();
     // console.log(`create ${JSON.stringify(request)}`);
     request.created = Date.now();
@@ -52,23 +62,30 @@ export class DaoService<T> {
     return await this.model.count(query);
   }
 
-    async find(query, sort = this.defaultSort, selectFileds?) {
-      return await this.model.find(query)
+  async find(query, sort = this.defaultSort, selectFileds?) {
+    return await this.model
+      .find(query)
       .select(selectFileds)
       .sort(sort);
-    }
+  }
 
   async findOne(query) {
     return await this.model.findOne(query);
   }
 
-  async findByPage(params, pagin:any = {}, selectFileds, sort = this.defaultSort) {
+  async findByPage(
+    params,
+    pagin: any = {},
+    selectFileds,
+    sort = this.defaultSort,
+  ) {
     const count = await this.count(params);
     const page = Number(pagin.page || 1);
     const pageSize = Number(pagin.pageSize || 10);
     const from = (page - 1) * pageSize;
 
-    const content = await this.model.find(params)
+    const content = await this.model
+      .find(params)
       .skip(from)
       .limit(pageSize)
       .select(selectFileds)
@@ -102,7 +119,7 @@ export class DaoService<T> {
 
     if (search.times) {
       for (const [key, value] of Object.entries(search.times)) {
-        const v:any = value;
+        const v: any = value;
         const start = v.start;
         const end = v.end;
         if (!queries[key] && (start || end)) {
@@ -142,17 +159,23 @@ export class DaoService<T> {
   }
 
   async findOneAndUpdateById(_id, updateFields) {
-    const result = await this.model.findOneAndUpdate({ _id }, updateFields, { new: true });
+    const result = await this.model.findOneAndUpdate({ _id }, updateFields, {
+      new: true,
+    });
     return result ? this.success() : this.fail();
   }
 
   async findOneAndUpdate(query, updateFields) {
-    const result = await this.model.findOneAndUpdate(query, updateFields, { new: true });
+    const result = await this.model.findOneAndUpdate(query, updateFields, {
+      new: true,
+    });
     return result ? this.success() : this.fail();
   }
 
   async updateMulti(query, updateFields) {
-    const result = await this.model.update(query, updateFields, { multi: true });
+    const result = await this.model.update(query, updateFields, {
+      multi: true,
+    });
     return result;
   }
 

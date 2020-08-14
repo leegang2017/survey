@@ -5,10 +5,11 @@ import { DaoService } from 'src/common/daoService';
 import { SurveyRecord } from './schemas/survey-records.schema';
 
 @Injectable()
-export class SurveyRecordsService  extends DaoService<SurveyRecord>{
-    constructor(@InjectModel('surveyrecords') private readonly surveyModel: Model<SurveyRecord>) { 
-        super(surveyModel);
-    }
-
-
+export class SurveyRecordsService extends DaoService<SurveyRecord> {
+  constructor(
+    @InjectModel('surveyrecords')
+    private readonly surveyModel: Model<SurveyRecord>,
+  ) {
+    super(surveyModel);
+  }
 }
