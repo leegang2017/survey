@@ -4,7 +4,7 @@
   1.   加上了oauth2.0
   2.   加上角色权限设计
   3.   模块设计,懒加载
-* 18年3月18日更新:
+* 18年3月18日更新:ddddd
   加上了ionic版本
   
 本项目是一个做题的demo, 包括egg.js, mongodb的后台，提供restful服务, 前端现在有3个，一个是用angular5和ng ant design做的，另一个是react和ant design mobile做的,还有一个是ionic版本
