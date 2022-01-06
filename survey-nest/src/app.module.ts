@@ -12,7 +12,7 @@ import { SurveyRecordsModule } from './survey-records/survey-records.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://survey:survey123@39.104.174.135:3308/surveydev?authMode=scram-sha1&rm.keepAlive=true&rm.tcpNoDelay=true&rm.nbChannelsPerNode=10',
+      'mongodb://localhost/survey?authMode=scram-sha1&rm.keepAlive=true&rm.tcpNoDelay=true&rm.nbChannelsPerNode=10',
     ),
     UsersModule,
     SurveysModule,

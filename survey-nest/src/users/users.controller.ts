@@ -14,13 +14,14 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from './schemas/users.dto';
 import { User } from './schemas/users.schema';
 import { ApiResponse } from '@nestjs/swagger';
+import { ListPage } from 'src/common/types';
 
-class ListPage<T> {
-  count: number;
-  page: number;
-  pageSize: number;
-  content: T[];
-}
+// class ListPage<T> {
+//   count: number;
+//   page: number;
+//   pageSize: number;
+//   content: T[];
+// }
 
 class CreateUserDto2 {
   readonly name: string;
@@ -72,9 +73,7 @@ export class UsersController {
 
   @Post('search')
   @ApiResponse({
-    count: 'number',
-    page: 'number',
-    pageSize: 'number',
+    type: ListPage,
   })
   async index(@Body() body: any): Promise<ListPage<CreateUserDto>> {
     return this.usersService.index(body);
