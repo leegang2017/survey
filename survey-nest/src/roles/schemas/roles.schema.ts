@@ -3,11 +3,11 @@ import * as mongoose from 'mongoose';
 const Mixed = mongoose.Schema.Types.Mixed;
 export const RoleSchema = new mongoose.Schema({
   name: String, // 角色名称
-    permission: Mixed, // 权限
-    system: String, // 那个系统
-    organization: Mixed, // 机构
-    created: Number,
-    updated: Number,
+  permission: Mixed, // 权限
+  system: String, // 那个系统
+  organization: Mixed, // 机构
+  created: Number,
+  updated: Number,
 });
 
 export interface Role extends Document {

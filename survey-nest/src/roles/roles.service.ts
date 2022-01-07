@@ -5,10 +5,8 @@ import { Role } from './schemas/roles.schema';
 import { DaoService } from 'src/common/daoService';
 
 @Injectable()
-export class RolesService extends DaoService<Role>{
-    constructor(@InjectModel('roles') private readonly roleModel: Model<Role>) { 
-        super(roleModel);
-    }
-
-
+export class RolesService extends DaoService<Role> {
+  constructor(@InjectModel('roles') private readonly roleModel: Model<Role>) {
+    super(roleModel);
+  }
 }

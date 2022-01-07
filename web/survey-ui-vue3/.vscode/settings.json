@@ -1,0 +1,4 @@
+{
+    "editor.formatOnPaste": true, //自动格式化粘贴的内容
+    "editor.formatOnSave": true, //保存自动格式化
+}

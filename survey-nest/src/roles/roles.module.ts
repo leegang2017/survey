@@ -8,6 +8,6 @@ import { RoleSchema } from './schemas/roles.schema';
   imports: [MongooseModule.forFeature([{ name: 'roles', schema: RoleSchema }])],
   controllers: [RolesController],
   providers: [RolesService],
-  exports:[RolesService],
+  exports: [RolesService],
 })
 export class RolesModule {}

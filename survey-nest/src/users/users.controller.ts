@@ -1,21 +1,32 @@
-import { Controller, Request, Post, Body, Get, UseGuards, Param, ForbiddenException, Put } from '@nestjs/common';
+import {
+  Controller,
+  Request,
+  Post,
+  Body,
+  Get,
+  UseGuards,
+  Param,
+  ForbiddenException,
+  Put,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from './schemas/users.dto';
 import { User } from './schemas/users.schema';
 import { ApiResponse } from '@nestjs/swagger';
+import { ListPage } from 'src/common/types';
 
-class ListPage<T> {
-  count:number;
-  page:number;
-  pageSize:number;
-  content:T[];
-}
+// class ListPage<T> {
+//   count: number;
+//   page: number;
+//   pageSize: number;
+//   content: T[];
+// }
 
 class CreateUserDto2 {
   readonly name: string;
   readonly isMale: boolean;
-  readonly role: string;   //类型: OPERATOR,操作员,USER老人
+  readonly role: string; //类型: OPERATOR,操作员,USER老人
   readonly phone: string;
   readonly password: string;
   readonly identityNumber: string;
@@ -29,48 +40,44 @@ class CreateUserDto2 {
 
 @Controller('users')
 export class UsersController {
-    constructor(
-      private readonly usersService: UsersService,
-      
-      ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   async create(@Body() createuserDto: CreateUserDto) {
-    const count = await this.usersService.count({identityNumber: createuserDto.identityNumber});
+    const count = await this.usersService.count({
+      identityNumber: createuserDto.identityNumber,
+    });
     if (count > 0) {
       throw new ForbiddenException('身份证号码在系统已经存在');
     }
-    
+
     return this.usersService.create(createuserDto);
   }
 
   @Put(':id')
-  async update(@Param('id') id,@Body() createuserDto: CreateUserDto) {
-      return this.usersService.update(id, createuserDto);
-    }
+  async update(@Param('id') id, @Body() createuserDto: CreateUserDto) {
+    return this.usersService.update(id, createuserDto);
+  }
 
-    // {
-    //   count: 'number',
-    //   page: 'number',
-    //   pageSize: 'number',
-    //   content: {
-    //     type: 'array',
-    //     items: {
-    //       type: 'number',
-    //     },
-    //   },
-    // }
+  // {
+  //   count: 'number',
+  //   page: 'number',
+  //   pageSize: 'number',
+  //   content: {
+  //     type: 'array',
+  //     items: {
+  //       type: 'number',
+  //     },
+  //   },
+  // }
 
   @Post('search')
   @ApiResponse({
-      count: 'number',
-      page: 'number',
-      pageSize: 'number',
-
+    type: ListPage,
   })
-  async index(@Body() body: any):Promise<ListPage<CreateUserDto>> {
-      return this.usersService.index(body);
-  } 
+  async index(@Body() body: any): Promise<ListPage<CreateUserDto>> {
+    return this.usersService.index(body);
+  }
 
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
@@ -81,11 +88,9 @@ export class UsersController {
   }
 
   @Get('getUserWithRoles/:id')
-  async getUserWithRoles(
-    @Param('id') id,) {
+  async getUserWithRoles(@Param('id') id) {
     const user = await this.usersService.show(id);
     await this.usersService.getRolesByUser(user);
     return user;
   }
-
 }

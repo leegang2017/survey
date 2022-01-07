@@ -3,8 +3,8 @@ const Mixed = mongoose.Schema.Types.Mixed;
 export const UserSchema = new mongoose.Schema({
   name: String,
   isMale: Boolean,
-  role: String,   //类型: OPERATOR,操作员,USER老人
-  roles:Mixed,
+  role: String, //类型: OPERATOR,操作员,USER老人
+  roles: Mixed,
   phone: String,
   password: String,
   identityNumber: String,
@@ -19,7 +19,7 @@ export const UserSchema = new mongoose.Schema({
 export interface User extends Document {
   readonly name: string;
   readonly isMale: boolean;
-  readonly role: string;   //类型: OPERATOR,操作员,USER老人
+  readonly role: string; //类型: OPERATOR,操作员,USER老人
   readonly roles: object;
   readonly phone: string;
   readonly password: string;
