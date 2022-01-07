@@ -52,7 +52,7 @@ export class HelperService {
 @Injectable()
 export class StorageService {
   set(key: string, value) {
-    return (<any>(<any>window)).localStorage.setItem(key, JSON.stringify(value));
+    return (<any>window).localStorage.setItem(key, JSON.stringify(value));
   }
 
   get(key: string) {
