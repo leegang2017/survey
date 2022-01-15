@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="center">
     <h2>
       知识竞答 <br />
       凝聚推动集团发展合力
@@ -18,9 +18,11 @@
     <a-form-item label="密码" name="password">
       <a-input v-model:value="formState.password" aria-placeholder="密码" />
     </a-form-item>
-    <a-form-item>
-      <a-button type="primary" @click="submitForm()">oauth登录</a-button>
-      <a-button type="primary" @click="jwtSubmitForm()">jwt登录</a-button>
+    <a-form-item class="center">
+      <a-space>
+        <a-button type="primary" @click="submitForm()">oauth登录</a-button>
+        <a-button type="primary" @click="jwtSubmitForm()">jwt登录</a-button>
+      </a-space>
     </a-form-item>
   </a-form>
 </template>
@@ -28,7 +30,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRaw, ref } from "vue";
 import { useRouter } from "vue-router";
-import { login } from "../api/rest";
+import { login } from "@/api/rest";
 export default defineComponent({
   setup() {
     const formRef = ref();
@@ -82,3 +84,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+@import "../design/index.css";
+</style>

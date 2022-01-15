@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import { ListPage, Survey } from "./types";
+import { ListPage, pageParam, Survey } from "./types";
 
 const instance = axios.create({
   baseURL: "http://localhost:3000",
@@ -22,9 +22,9 @@ export async function login({
   }).then((res) => res.data);
 }
 
-export async function searchUser(params: object) {
+export async function searchUser(params: object, pagin: pageParam) {
   return instance({
-    url: "users/search",
+    url:`users/search?page=${pagin.page}&pageSize=${pagin.pageSize}`,
     method: "POST",
     data: JSON.stringify({ eqs: params }),
   });

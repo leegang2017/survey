@@ -29,7 +29,9 @@
               <span>人员管理</span>
             </span>
           </template>
-          <a-menu-item key="3"> 人员信息</a-menu-item>
+          <router-link to="/user/list"
+            ><a-menu-item key="3"> 人员信息</a-menu-item></router-link
+          >
         </a-sub-menu>
         <a-sub-menu key="sub3">
           <template #title>

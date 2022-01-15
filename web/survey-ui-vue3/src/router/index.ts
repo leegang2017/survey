@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout.vue";
 import Login from "../views/Login.vue";
 import SurveyStart from "../views/SurveyStart.vue";
 import SurveyManage from "../views/SurveyManage.vue";
+import UserList from "../views/user/UserList.vue";
 
 // 2. 定义一些路由
 const routes = [
@@ -15,6 +16,15 @@ const routes = [
     children: [
       { path: "start", component: SurveyStart },
       { path: "manage", component: SurveyManage },
+    ],
+  },
+  {
+    path: "/user",
+    component: MainLayout,
+    redirect: "/user/list",
+    children: [
+      { path: "list", component: UserList },
+      // { path: "manage", component: SurveyManage },
     ],
   },
 ];

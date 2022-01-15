@@ -5,6 +5,11 @@ export interface ListPage<T> {
   content: T[];
 }
 
+export interface pageParam {
+  page: number;
+  pageSize: number;
+}
+
 export interface Survey {
   category: string;
   name: string;
