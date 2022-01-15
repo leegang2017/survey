@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
-    "axios": "^0.24.0",
+    "axios": "^0.21.2",
     "qs": "^6.10.3",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
