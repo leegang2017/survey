@@ -1,32 +1,15 @@
 <template>
-  <a-table :columns="columns" :data-source="data">
-    <template #name="{ text }">
-      <a>{{ text }}</a>
-    </template>
-    <template #customTitle>
+  <a-table :columns="columns" :data-source="page.content">
+    <template #isMale="{ text }">
       <span>
-        <smile-outlined />
-        Name
-      </span>
-    </template>
-    <template #tags="{ text: tags }">
-      <span>
-        <a-tag
-          v-for="tag in tags"
-          :key="tag"
-          :color="
-            tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'
-          "
-        >
-          {{ tag.toUpperCase() }}
-        </a-tag>
+        {{ text ? "男" : "女" }}
       </span>
     </template>
     <template #action="{ record }">
       <span>
-        <a>Invite 一 {{ record.name }}</a>
+        <a>Invite1 一 {{ record.name }}</a>
         <a-divider type="vertical" />
-        <a>Delete</a>
+        <a>查看</a>
         <a-divider type="vertical" />
         <a class="ant-dropdown-link">
           More actions
@@ -35,11 +18,14 @@
       </span>
     </template>
   </a-table>
+  <UserEditModel> </UserEditModel>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import { searchUser } from "@/api/rest";
+import UserEditModel from "@/views/user/UserEditModel.vue";
 export default defineComponent({
+  components: { UserEditModel },
   setup() {
     const columns = ref([
       {
@@ -56,6 +42,7 @@ export default defineComponent({
         title: "性别",
         dataIndex: "isMale",
         key: "isMale",
+        slots: { customRender: "isMale" },
       },
       {
         title: "简称",
@@ -81,7 +68,7 @@ export default defineComponent({
     const page = ref({
       page: 1,
       pageSize: 5,
-      pageTotal: 0,
+      count: 0,
       content: [] as object[],
     });
 

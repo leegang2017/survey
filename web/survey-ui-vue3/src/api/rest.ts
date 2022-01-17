@@ -22,20 +22,39 @@ export async function login({
   }).then((res) => res.data);
 }
 
-export async function searchUser(params: object, pagin: pageParam) {
+export async function searchUser(
+  params: object,
+  pagin: pageParam
+): Promise<ListPage<object>> {
   return instance({
-    url:`users/search?page=${pagin.page}&pageSize=${pagin.pageSize}`,
+    url: `users/search?page=${pagin.page}&pageSize=${pagin.pageSize}`,
     method: "POST",
     data: JSON.stringify({ eqs: params }),
-  });
+  }).then((res) => res.data) as unknown as Promise<ListPage<object>>;
+}
+
+export async function saveUser(user: any) {
+  if (user._id) {
+    return instance({
+      url: `users/${user._id}`,
+      method: "put",
+      data: JSON.stringify(user),
+    });
+  } else {
+    return instance({
+      url: "users",
+      method: "POST",
+      data: JSON.stringify(user),
+    });
+  }
 }
 
 export async function getSurvey(): Promise<ListPage<Survey>> {
-  return (instance({
+  return instance({
     url: "surveys/search",
     method: "POST",
     data: JSON.stringify({ eqs: { category: "CAPABILITY_ASSESSMENT" } }),
-  }).then((res) => res.data) as unknown) as Promise<ListPage<Survey>>;
+  }).then((res) => res.data) as unknown as Promise<ListPage<Survey>>;
 }
 
 export async function updateSurvey(survey: any) {
