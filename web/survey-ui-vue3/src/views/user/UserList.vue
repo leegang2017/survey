@@ -7,18 +7,16 @@
     </template>
     <template #action="{ record }">
       <span>
-        <a>Invite1 一 {{ record.name }}</a>
-        <a-divider type="vertical" />
-        <a>查看</a>
-        <a-divider type="vertical" />
-        <a class="ant-dropdown-link">
-          More actions
-          <down-outlined />
-        </a>
+        <a @click="edit(record)">查看</a>
       </span>
     </template>
   </a-table>
-  <UserEditModel> </UserEditModel>
+  <UserEditModel
+    v-model:visible="isEditModelVisible"
+    :record="record"
+    :title="editModelTitle"
+  >
+  </UserEditModel>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
@@ -65,6 +63,9 @@ export default defineComponent({
         slots: { customRender: "action" },
       },
     ]);
+    const isEditModelVisible = ref(false);
+    const record = ref();
+    const editModelTitle = ref("");
     const page = ref({
       page: 1,
       pageSize: 5,
@@ -96,6 +97,12 @@ export default defineComponent({
       }
     };
 
+    const edit = (editRecord = null) => {
+      isEditModelVisible.value = true;
+      record.value = editRecord;
+      editModelTitle.value = "编辑";
+    };
+
     onMounted(async () => {
       refreshData();
     });
@@ -103,7 +110,11 @@ export default defineComponent({
     return {
       columns,
       page,
+      isEditModelVisible,
+      record,
       onPageChange,
+      edit,
+      editModelTitle,
     };
   },
 });
