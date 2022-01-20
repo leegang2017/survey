@@ -2,7 +2,9 @@
   <a-modal
     v-model:visible="isEditModelVisible"
     :title="title"
-    @ok="handleOk"
+    @ok="submitForm"
+    :okText="保存"
+    :cancelText="取消"
     @cancel="handleCancel"
   >
     <a-form
@@ -18,10 +20,24 @@
       <a-form-item label="简称" name="shortName">
         <a-input v-model:value="formState.shortName" aria-placeholder="简称" />
       </a-form-item>
-      <a-form-item class="center">
-        <a-space>
-          <a-button type="primary" @click="submitForm()">保存</a-button>
-        </a-space>
+      <a-form-item label="身份证号" name="identityNumber">
+        <a-input v-model:value="formState.identityNumber" aria-placeholder="身份证号" />
+      </a-form-item>
+      <a-form-item label="性别" name="isMale">
+            <a-select
+      ref="select"
+      v-model:value="formState.isMale"
+    >
+      <a-select-option value="true">男</a-select-option>
+      <a-select-option value="false">女</a-select-option>
+    </a-select>
+
+      </a-form-item>
+      <a-form-item label="出生日期" name="dob">
+        <a-input v-model:value="formState.dob" aria-placeholder="出生日期" />
+      </a-form-item>
+      <a-form-item label="电话" name="phone">
+        <a-input v-model:value="formState.phone" aria-placeholder="电话" />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -63,9 +79,9 @@ export default defineComponent({
       isEditModelVisible.value = newValue;
     });
 
-    const handleOk = (e: MouseEvent) => {
-      context.emit("update:visible", false);
-    };
+    // const handleOk = (e: MouseEvent) => {
+    //   context.emit("update:visible", false);
+    // };
 
     const handleCancel = (e: MouseEvent) => {
       context.emit("update:visible", false);
@@ -77,6 +93,20 @@ export default defineComponent({
       password: "",
     });
     const rules = {
+      name: [
+        {
+          required: true,
+          message: "Please input name",
+          trigger: "blur",
+        },
+      ],
+      shortName: [
+        {
+          required: true,
+          message: "Please input shortName",
+          trigger: "blur",
+        },
+      ],
       id: [
         {
           required: true,
@@ -84,13 +114,33 @@ export default defineComponent({
           trigger: "blur",
         },
       ],
-      password: [
+      identityNumber: [
         {
           required: true,
-          message: "Please input password",
+          message: "Please input identityNumber",
           trigger: "blur",
         },
-        { min: 3, message: "Length should be at least 3", trigger: "blur" },
+      ],
+      isMale: [
+        {
+          required: true,
+          message: "Please input isMale",
+          trigger: "blur",
+        },
+      ],
+      dob: [
+        {
+          required: true,
+          message: "Please input dob",
+          trigger: "blur",
+        },
+      ],
+      phone: [
+        {
+          required: true,
+          message: "Please input phone",
+          trigger: "blur",
+        },
       ],
     };
 
@@ -103,7 +153,6 @@ export default defineComponent({
 
     return {
       isEditModelVisible,
-      handleOk,
       handleCancel,
       record,
       title,
