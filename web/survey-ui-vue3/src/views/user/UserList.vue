@@ -64,7 +64,7 @@ export default defineComponent({
       },
     ]);
     const isEditModelVisible = ref(false);
-    const record = ref();
+    const record = ref({});
     const editModelTitle = ref("");
     const page = ref({
       page: 1,

@@ -5,6 +5,9 @@ import { ListPage, pageParam, Survey } from "./types";
 const instance = axios.create({
   baseURL: "http://localhost:3000",
   timeout: 1000,
+  headers: {
+    "content-type": "application/json",
+  },
   // headers: { "X-Custom-Header": "foobar" },
 });
 
@@ -29,7 +32,7 @@ export async function searchUser(
   return instance({
     url: `users/search?page=${pagin.page}&pageSize=${pagin.pageSize}`,
     method: "POST",
-    data: JSON.stringify({ eqs: params }),
+    data: JSON.stringify(params),
   }).then((res) => res.data) as unknown as Promise<ListPage<object>>;
 }
 

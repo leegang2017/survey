@@ -3,8 +3,8 @@
     v-model:visible="isEditModelVisible"
     :title="title"
     @ok="submitForm"
-    :okText="保存"
-    :cancelText="取消"
+    :okText="'保存'"
+    :cancelText="'取消'"
     @cancel="handleCancel"
   >
     <a-form
@@ -21,20 +21,19 @@
         <a-input v-model:value="formState.shortName" aria-placeholder="简称" />
       </a-form-item>
       <a-form-item label="身份证号" name="identityNumber">
-        <a-input v-model:value="formState.identityNumber" aria-placeholder="身份证号" />
+        <a-input
+          v-model:value="formState.identityNumber"
+          aria-placeholder="身份证号"
+        />
       </a-form-item>
       <a-form-item label="性别" name="isMale">
-            <a-select
-      ref="select"
-      v-model:value="formState.isMale"
-    >
-      <a-select-option value="true">男</a-select-option>
-      <a-select-option value="false">女</a-select-option>
-    </a-select>
-
+        <a-select ref="select" v-model:value="formState.isMale">
+          <a-select-option value="true">男</a-select-option>
+          <a-select-option value="false">女</a-select-option>
+        </a-select>
       </a-form-item>
       <a-form-item label="出生日期" name="dob">
-        <a-input v-model:value="formState.dob" aria-placeholder="出生日期" />
+        <a-date-picker v-model:value="formState.dob" />
       </a-form-item>
       <a-form-item label="电话" name="phone">
         <a-input v-model:value="formState.phone" aria-placeholder="电话" />
@@ -58,7 +57,7 @@ export default defineComponent({
   props: {
     record: {
       type: Object,
-      required: false,
+      required: true,
     },
     visible: {
       type: Boolean,
@@ -89,8 +88,21 @@ export default defineComponent({
 
     const formRef = ref();
     const formState = reactive({
-      user: "",
-      password: "",
+      name: undefined,
+      shortName: undefined,
+      identityNumber: undefined,
+      isMale: "true",
+      dob: undefined,
+      phone: undefined,
+    });
+
+    watch(record, (newValue: any, oldValue) => {
+      formState.name = newValue.name;
+      formState.shortName = newValue.shortName;
+      formState.identityNumber = newValue.identityNumber;
+      formState.isMale = newValue.isMale ? "true" : "false";
+      formState.dob = newValue.dob;
+      formState.phone = newValue.phone;
     });
     const rules = {
       name: [
@@ -107,13 +119,13 @@ export default defineComponent({
           trigger: "blur",
         },
       ],
-      id: [
-        {
-          required: true,
-          message: "Please input id",
-          trigger: "blur",
-        },
-      ],
+      // id: [
+      //   {
+      //     required: true,
+      //     message: "Please input id",
+      //     trigger: "blur",
+      //   },
+      // ],
       identityNumber: [
         {
           required: true,
@@ -125,14 +137,15 @@ export default defineComponent({
         {
           required: true,
           message: "Please input isMale",
-          trigger: "blur",
+          trigger: "change",
         },
       ],
       dob: [
         {
           required: true,
           message: "Please input dob",
-          trigger: "blur",
+          trigger: "change",
+          type: "object",
         },
       ],
       phone: [
@@ -146,7 +159,9 @@ export default defineComponent({
 
     const submitForm = () => {
       formRef.value.validate().then(async () => {
-        await saveUser(toRaw(formState));
+        console.log("record.value", toRaw(record.value));
+        const newRecord = { ...toRaw(record.value), ...toRaw(formState) };
+        await saveUser(newRecord);
         context.emit("update:visible", false);
       });
     };
